@@ -1,7 +1,0 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
-/ProductFeatureManagementWebApi/.vs/ProductFeatureManagementWebApi
-/Database/Schema/ProductFeatureMgmt_Log.ldf
-/Database/Schema/ProductFeatureMgmt_Data.mdf
