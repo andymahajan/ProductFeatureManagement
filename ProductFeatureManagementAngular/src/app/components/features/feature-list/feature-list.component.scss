@@ -1,0 +1,32 @@
+.full-width-table {
+  width: 100%;
+}
+
+mat-card {
+  margin: 10px;
+  padding: 10px;
+  height: 90vh;
+}
+
+.toolbar {
+  margin-bottom: 10px;
+}
+
+.container {
+  height: 90vh; /* Or any specific height you need */
+}
+
+mat-cell button {
+  margin-right: 8px; /* Adjust the spacing between buttons */
+}
+
+mat-cell button:last-child {
+  margin-right: 0; /* Remove margin from the last button */
+}
+
+.no-records-message {
+  text-align: center;
+  padding: 16px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.54); /* Optional: adjust color */
+}

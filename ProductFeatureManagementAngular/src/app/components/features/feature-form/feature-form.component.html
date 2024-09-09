@@ -1,0 +1,92 @@
+<mat-card class="mat-elevation-z4">
+  <mat-card-title>{{ isEditMode ? 'Edit Feature' : 'Create Feature' }}</mat-card-title>
+  <hr>
+  <form [formGroup]="featureForm">
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+        <mat-error *ngIf="featureForm.get('title')?.invalid && featureForm.get('title')?.touched">
+          <div *ngIf="featureForm.get('title')?.hasError('required')">Title is required.</div>
+          <div *ngIf="featureForm.get('title')?.hasError('maxlength')">Title cannot exceed 1000 characters.</div>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="featureForm.get('description')?.hasError('maxlength')">
+          Description cannot exceed 5000 characters.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <div class="row">
+        <div class="col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Estimated Complexity</mat-label>
+            <mat-select formControlName="complexityId">
+              <mat-option *ngFor="let complexity of complexities" [value]="complexity.complexityId">
+                {{ complexity.complexityName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="statusId">
+              <mat-option *ngFor="let status of statuses" [value]="status.statusId">
+                {{ status.statusName }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Target Completion Date</mat-label>
+        <input matInput [matDatepicker]="picker" [min]="yesterday" formControlName="targetCompletionDate"
+          (focus)="openDatepicker(picker)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="featureForm.get('targetCompletionDate')?.hasError('futureDate')">
+          Date must be in the future.
+        </mat-error>
+        <mat-error *ngIf="featureForm.get('targetCompletionDate')?.hasError('requiredForActiveStatus')">
+          Target Completion Date is required when Status is Active.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Actual Completion Date</mat-label>
+        <input matInput [matDatepicker]="picker2" [min]="yesterday" (focus)="openDatepicker(picker2)"
+          formControlName="actualCompletionDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="featureForm.get('actualCompletionDate')?.hasError('futureDate')">
+          Date must be in the future.
+        </mat-error>
+        <mat-error *ngIf="featureForm.get('actualCompletionDate')?.hasError('requiredForClosedStatus')">
+          Actual Completion Date is required when Status is Closed.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="actions">
+      <button mat-raised-button color="warn" class="delete" [disabled]="isFormInvalid()" *ngIf="isEditMode"
+        (click)="openConfirmDialog()">Delete</button>
+      <button mat-raised-button color="primary" class="create" (click)="onSubmit()" type="submit">{{ isEditMode ?
+        'Update' : 'Create'
+        }}</button>
+      <button mat-raised-button color="warn" class="cancel" routerLink="/features/list">Cancel</button>
+    </div>
+  </form>
+</mat-card>

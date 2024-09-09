@@ -1,0 +1,51 @@
+mat-card {
+  margin: 10px;
+  padding: 10px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 16px; /* Adjust spacing between form groups */
+}
+
+textarea.mat-input-element {
+  height: 100px; /* Adjust height as needed */
+}
+
+.row {
+  display: flex;
+  gap: 16px; /* Space between the columns */
+}
+
+.col {
+  flex: 1; /* Distribute space equally */
+}
+
+.actions {
+  display: flex; 
+  margin-top: 16px;
+  gap: 1%;
+}
+
+.delete
+{
+  margin-left: 5%;
+}
+
+.create
+{
+  margin-left: 75%;
+}
+
+.cancel
+{
+  //margin-left: 80%;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: bold;
+}
