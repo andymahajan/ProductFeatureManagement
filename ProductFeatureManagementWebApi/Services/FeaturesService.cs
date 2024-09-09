@@ -17,7 +17,7 @@
         }
 
         // Get all features
-        public async Task<IEnumerable<Feature>> GetAllFeaturesAsync()
+        public async Task<IEnumerable<FeatureDto>> GetAllFeaturesAsync()
         {
             _logger.LogInformation("Attempting to retrieve all features.");
             try

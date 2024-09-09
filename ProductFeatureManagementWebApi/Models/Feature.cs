@@ -18,11 +18,10 @@ public partial class Feature
     [MaxLength(5000)]
     public string? Description { get; set; }
 
-    [Required]
     public int? ComplexityId { get; set; }
 
-    [Required]
     public int? StatusId { get; set; }
+
 
     [RequiredIfActiveAttribute]
     public DateTime? TargetCompletionDate { get; set; }

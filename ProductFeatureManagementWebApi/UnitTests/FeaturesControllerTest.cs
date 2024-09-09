@@ -23,10 +23,10 @@ namespace ProductFeatureManagementWebApi
         public async Task GetAllFeatures_ShouldReturnOkResultWithFeatures()
         {
             // Arrange
-            var features = new List<Feature>
+            var features = new List<FeatureDto>
             {
-                new Feature { FeaturesId = 1, Title = "Feature 1" },
-                new Feature { FeaturesId = 2, Title = "Feature 2" }
+                new FeatureDto { FeaturesId = 1, Title = "Feature 1" },
+                new FeatureDto { FeaturesId = 2, Title = "Feature 2" }
             };
             _mockService.Setup(s => s.GetAllFeaturesAsync()).ReturnsAsync(features);
 

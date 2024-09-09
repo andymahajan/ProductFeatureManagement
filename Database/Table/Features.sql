@@ -8,8 +8,8 @@ BEGIN
         FeaturesId BIGINT IDENTITY(1,1) PRIMARY KEY,  -- Auto-incrementing FeaturesId with primary key
         Title NVARCHAR(1000) NOT NULL,                -- Title with maximum 1000 characters, required
         Description NVARCHAR(MAX) NULL,               -- Description with maximum characters, nullable
-        ComplexityId INT,                             -- Foreign key to Complexity table
-        StatusId INT,                                 -- Foreign key to Status table
+        ComplexityId INT NULL,                        -- Foreign key to Complexity table
+        StatusId INT NULL,                            -- Foreign key to Status table
         TargetCompletionDate DATE NULL,               -- Nullable date
         ActualCompletionDate DATE NULL,               -- Nullable date
         

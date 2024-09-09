@@ -14,12 +14,29 @@ namespace ProductFeatureManagementWebApi
         }
 
         // Get all features (could be useful for listing them)
-        public async Task<IEnumerable<Feature>> GetAllFeaturesAsync()
+        public async Task<IEnumerable<FeatureDto>> GetAllFeaturesAsync()
         {
             _logger.LogInformation("Attempting to get all features.");
             try
             {
-                return await _featureMgmtDbContext.Features.ToListAsync(); // Get all features
+                var features = await _featureMgmtDbContext.Features
+                               .Include(f => f.Status)       // Join Status table
+                               .Include(f => f.Complexity) // Join Complexity table
+                               .Select(f => new FeatureDto
+                               {
+                                   FeaturesId = f.FeaturesId,
+                                   Title = f.Title,
+                                   Description = f.Description,
+                                   ComplexityId = f.Complexity != null ? f.Complexity.ComplexityId : (int?)null,
+                                   ComplexityName = f.Complexity != null ? f.Complexity.ComplexityName : null,
+                                   StatusId = f.Status != null ? f.Status.StatusId : (int?)null,
+                                   StatusName = f.Status != null ? f.Status.StatusName : null,
+                                   TargetCompletionDate = f.TargetCompletionDate,
+                                   ActualCompletionDate = f.ActualCompletionDate
+                               })
+                               .ToListAsync();
+
+                return features;
             }
             catch (Exception ex)
             {

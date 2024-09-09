@@ -16,7 +16,12 @@
                 return new ValidationResult("Status service is not available.");
             }
 
-            var status = statusService.GetStatusByIdAsync((int)feature.StatusId).Result;
+            if(feature.StatusId == null)
+            {
+                return ValidationResult.Success;
+            }
+
+            var status = statusService.GetStatusByIdAsync((int)feature?.StatusId).Result;
 
             if (status != null && status.StatusName == "Active" && value == null)
             {

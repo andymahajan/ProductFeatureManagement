@@ -4,7 +4,7 @@ namespace ProductFeatureManagementWebApi
 {
     public interface IFeaturesRepository
     {
-        public Task<IEnumerable<Feature>> GetAllFeaturesAsync();
+        public Task<IEnumerable<FeatureDto>> GetAllFeaturesAsync();
         public Task<Feature> GetFeatureByIdAsync(long featureId);
         public Task<Feature> AddFeatureAsync(Feature feature);
         public Task<Feature> UpdateFeatureAsync(Feature feature);
